@@ -1,3 +1,6 @@
+package stringcalculator;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +13,7 @@ public class TextTest {
     void emptyCharTest() {
         Text text = new Text("");
 
-        assertThat(text.getValue()).isZero();
+        Assertions.assertThat(text.getValue()).isZero();
     }
 
     @Test
@@ -18,7 +21,7 @@ public class TextTest {
     void emptyNullTest() {
         Text text = new Text(null);
 
-        assertThat(text.getValue()).isZero();
+        Assertions.assertThat(text.getValue()).isZero();
     }
 
     @Test
@@ -26,7 +29,7 @@ public class TextTest {
     void parseStringToIntTest() {
         Text text = new Text("1");
 
-        assertThat(text.getValue()).isEqualTo(1);
+        Assertions.assertThat(text.getValue()).isEqualTo(1);
     }
 
     @Test
@@ -47,7 +50,7 @@ public class TextTest {
     void addNumber2WithSplitter() {
         Text text = new Text("1,2");
 
-        assertThat(text.getValue()).isEqualTo(3);
+        Assertions.assertThat(text.getValue()).isEqualTo(3);
     }
 
     @Test
@@ -55,7 +58,7 @@ public class TextTest {
     void useSemicolonSplitter() {
         Text text = new Text("1,:2");
 
-        assertThat(text.getValue()).isEqualTo(3);
+        Assertions.assertThat(text.getValue()).isEqualTo(3);
     }
 
     @Test
@@ -63,7 +66,7 @@ public class TextTest {
     void useCustomSplitter() {
         Text text = new Text("//;\n1;2;3");
 
-        assertThat(text.getValue()).isEqualTo(6);
+        Assertions.assertThat(text.getValue()).isEqualTo(6);
     }
 
     @Test
