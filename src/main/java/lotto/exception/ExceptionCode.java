@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.exception;
 
 public enum ExceptionCode {
     INVALID_NUMBER_RANGE("올바르지 않은 로또 번호입니다.");
