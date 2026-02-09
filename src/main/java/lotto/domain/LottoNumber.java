@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionCode;
+
 public class LottoNumber {
     private int number;
 

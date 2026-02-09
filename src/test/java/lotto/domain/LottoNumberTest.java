@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,8 @@ public class LottoNumberTest {
     @DisplayName("로또 번호 범위 검증 - 실패")
     void lottoNumRange() {
         assertThatThrownBy(() -> new LottoNumber(50))
-                .isInstanceOf(RuntimeException.class);
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(ExceptionCode.INVALID_NUMBER_RANGE.getMsg());
     }
 
     @Test
