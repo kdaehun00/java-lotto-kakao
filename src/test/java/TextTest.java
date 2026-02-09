@@ -10,7 +10,7 @@ public class TextTest {
     void emptyCharTest() {
         Text text = new Text("");
 
-        assertThat(text.getValue()).isEqualTo(0);
+        assertThat(text.getValue()).isZero();
     }
 
     @Test
@@ -18,6 +18,14 @@ public class TextTest {
     void emptyNullTest() {
         Text text = new Text(null);
 
-        assertThat(text.getValue()).isEqualTo(0);
+        assertThat(text.getValue()).isZero();
+    }
+
+    @Test
+    @DisplayName("문자열(숫자 하나)을 int type으로 변환")
+    void parseStringToIntTest() {
+        Text text = new Text("1");
+
+        assertThat(text.getValue()).isEqualTo(1);
     }
 }
