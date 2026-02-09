@@ -4,7 +4,7 @@ import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
 public class LottoNumber {
-    private int number;
+    private final int number;
 
     public LottoNumber(int number) {
         if (number < 1 || number > 45) {
@@ -15,5 +15,13 @@ public class LottoNumber {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        LottoNumber that = (LottoNumber) obj;
+        return number == that.number;
     }
 }
