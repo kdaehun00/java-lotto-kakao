@@ -28,4 +28,43 @@ public class TextTest {
 
         assertThat(text.getValue()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("컴마로 구분된 두 숫자 입력")
+    void parseNumber2WithSplitter() {
+        Text text = new Text("1,2");
+
+        int[] textArr = text.getIntArr();
+
+        assertThat(textArr).hasSize(2);
+
+        assertThat(textArr[0]).isEqualTo(1);
+        assertThat(textArr[1]).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("컴마로 구분된 두 숫자 합")
+    void addNumber2WithSplitter() {
+        Text text = new Text("1,2");
+
+        assertThat(text.getValue()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("구분자로 세미콜론 사용 가능")
+    void useSemicolonSplitter() {
+        Text text = new Text("1,:2");
+
+        assertThat(text.getValue()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("구분자로 커스텀 구분자 사용 가능")
+    void useCustomSplitter() {
+        Text text = new Text("//;\n1;2;3");
+
+        assertThat(text.getValue()).isEqualTo(6);
+    }
+
+
 }
