@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TextNumValue {
     private ArrayList<Integer> textArr = new ArrayList<>();
@@ -10,13 +9,22 @@ public class TextNumValue {
             return;
         }
 
+        char preData = '\n';
+
         for (int i = 0; i < input.length(); i++) {
+
             int parseResult = parseInt(input.charAt(i));
+
+            if (preData == '-' && parseResult >= 0 && parseResult <= 9) {
+                throw new RuntimeException();
+            }
 
             if (parseResult >= 0) {
                 totalValue += parseResult;
                 textArr.add(parseResult);
             }
+
+            preData = input.charAt(i);
         }
     }
 

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class TextTest {
 
@@ -66,5 +66,11 @@ public class TextTest {
         assertThat(text.getValue()).isEqualTo(6);
     }
 
+    @Test
+    @DisplayName("음수일 경우 예외 발생")
+    void exceptionForNegativeNumber() {
 
+        assertThatRuntimeException()
+                .isThrownBy(() -> new Text("-1, 2, 3"));
+    }
 }
