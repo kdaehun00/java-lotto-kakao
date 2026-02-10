@@ -36,7 +36,7 @@ public class AnswerLotto extends LottoNumberList{
 
     public LottoResult judge(LottoBallList other) {
         int ballCount = 0;
-        boolean isCorrectBonus = false;
+        boolean isCorrectBonus = isBonusCorrect(other);
 
         ballCount = countBall(other, ballCount);
 
