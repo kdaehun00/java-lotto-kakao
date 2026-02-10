@@ -25,27 +25,38 @@ public class LottoNumberList {
             this.lottoNums.add(new LottoNumber(currentNum));
         }
 
+        checkLottoLength(numSet);
+        this.bonusNum = new LottoNumber(lottoNums.get(BONUS_NUM_INDEX));
+    }
+
+    private static void checkLottoLength(Set<Integer> numSet) {
         if (!(numSet.size() == LOTTO_LENGTH)) {
             throw new LottoException(ExceptionCode.NUMBER_DUPLICATED);
         }
-        this.bonusNum = new LottoNumber(lottoNums.get(BONUS_NUM_INDEX));
     }
 
     public LottoResult judge(LottoNumberList other) {
         int ballCount = 0;
         boolean isCorrectBonus = false;
 
+        ballCount = countBall(other, ballCount);
+
+        isCorrectBonus = isBonusCorrect(other);
+
+        return new LottoResult(ballCount, isCorrectBonus);
+    }
+
+    private boolean isBonusCorrect(LottoNumberList other) {
+        return Objects.equals(this.bonusNum, other.bonusNum);
+    }
+
+    private int countBall(LottoNumberList other, int ballCount) {
         for (int i = 0; i < LOTTO_LENGTH; i++) {
             if (Objects.equals(this.lottoNums.get(i), other.lottoNums.get(i))) {
                 ballCount += 1;
             }
         }
-
-        if (Objects.equals(this.lottoNums.get(BONUS_NUM_INDEX), other.lottoNums.get(BONUS_NUM_INDEX))) {
-            isCorrectBonus = true;
-        }
-
-        return new LottoResult(ballCount, isCorrectBonus);
+        return ballCount;
     }
 
     public ArrayList<LottoNumber> getLottoNums() {
