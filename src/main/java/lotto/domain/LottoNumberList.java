@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class LottoNumberList {
-    private final static int LOTTO_NUM_COUNT = 7;
+    private final static int LOTTO_LENGTH = 6;
     private final static int BONUS_NUM_INDEX = 6;
 
     ArrayList<LottoNumber> lottoNums = new ArrayList<>();
@@ -18,14 +18,14 @@ public class LottoNumberList {
     public LottoNumberList(ArrayList<Integer> lottoNums) {
         Set<Integer> numSet = new LinkedHashSet<>();
 
-        for (int i = 0; i < LOTTO_NUM_COUNT; i++) {
+        for (int i = 0; i < LOTTO_LENGTH; i++) {
             int currentNum = lottoNums.get(i);
             numSet.add(currentNum);
 
             this.lottoNums.add(new LottoNumber(currentNum));
         }
 
-        if (!(numSet.size() == LOTTO_NUM_COUNT)) {
+        if (!(numSet.size() == LOTTO_LENGTH)) {
             throw new LottoException(ExceptionCode.NUMBER_DUPLICATED);
         }
         this.bonusNum = new LottoNumber(lottoNums.get(BONUS_NUM_INDEX));
@@ -35,7 +35,7 @@ public class LottoNumberList {
         int ballCount = 0;
         boolean isCorrectBonus = false;
 
-        for (int i = 0; i < BONUS_NUM_INDEX; i++) {
+        for (int i = 0; i < LOTTO_LENGTH; i++) {
             if (Objects.equals(this.lottoNums.get(i), other.lottoNums.get(i))) {
                 ballCount += 1;
             }
@@ -48,5 +48,11 @@ public class LottoNumberList {
         return new LottoResult(ballCount, isCorrectBonus);
     }
 
+    public ArrayList<LottoNumber> getLottoNums() {
+        return lottoNums;
+    }
 
+    public LottoNumber getBonusNum() {
+        return bonusNum;
+    }
 }
