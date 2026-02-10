@@ -29,6 +29,11 @@ public class LottoNumberList {
         this.bonusNum = new LottoNumber(lottoNums.get(BONUS_NUM_INDEX));
     }
 
+    public LottoNumberList(LottoNumberList other) {
+        this.lottoNums = new ArrayList<>(other.lottoNums);
+        this.bonusNum = other.bonusNum;
+    }
+
     private static void checkLottoLength(Set<Integer> numSet) {
         if (!(numSet.size() == LOTTO_LENGTH)) {
             throw new LottoException(ExceptionCode.NUMBER_DUPLICATED);
