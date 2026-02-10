@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class LottoAutoCreatorTest {
 
@@ -19,5 +20,13 @@ public class LottoAutoCreatorTest {
 
         assertThat(myLotto.getLottoNums()).hasSize(6);
         assertThat(myLotto.getBonusNum()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("정상적으로 suffle 실행")
+    void createLottoTest() {
+        assertDoesNotThrow(() -> {
+            LottoAutoCreator.lottoAutoCreate();
+        });
     }
 }
