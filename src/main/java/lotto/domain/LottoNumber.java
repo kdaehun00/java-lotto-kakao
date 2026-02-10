@@ -24,4 +24,9 @@ public class LottoNumber {
         LottoNumber that = (LottoNumber) obj;
         return number == that.number;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
 }

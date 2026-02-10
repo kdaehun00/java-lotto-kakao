@@ -44,4 +44,15 @@ public class LottoNumberListTest {
         assertThat(lottoResult.getBallCount()).isEqualTo(5);
         assertThat(lottoResult.isCorrectBonus()).isTrue();
     }
+
+    @Test
+    @DisplayName("로또 숫자 가져오기")
+    void getLottoNumList(){
+        ArrayList<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7));
+        LottoNumberList myLotto = new LottoNumberList(lotto);
+        String targetNumString = "[1, 2, 3, 4, 5, 6]";
+        String lottoNumString = myLotto.getLottoNumString();
+
+        assertThat(lottoNumString).isEqualTo(targetNumString);
+    }
 }
