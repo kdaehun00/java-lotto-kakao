@@ -1,11 +1,48 @@
 package lotto.domain;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.Map;
 
 public class LottoTotalResult {
 
-    public LottoTotalResult(ArrayList<Rank> ranks) {
+    private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
 
+    public LottoTotalResult(LottoResultList lottoResultList) {
+        for (Rank rank : Rank.values()) {
+            rankCounts.put(rank, 0);
+        }
+
+        for (Rank rank : lottoResultList.getLottoResultRanks()) {
+            rankCounts.put(rank, rankCounts.get(rank) + 1);
+        }
     }
 
+    public int getCount(Rank rank) {
+        return rankCounts.getOrDefault(rank, 0);
+    }
+
+    public Map<Rank, Integer> getRankCounts() {
+        return rankCounts;
+    }
+
+    public String getTotalResultString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.MISS) {
+                continue;
+            }
+
+            int count = rankCounts.getOrDefault(rank, 0);
+
+            sb.append(rank.getRanking())
+                    .append("개 일치 (")
+                    .append(rank.getWinningMoney())
+                    .append("원) - ")
+                    .append(count)
+                    .append("개\n");
+        }
+
+        return sb.toString();
+    }
 }

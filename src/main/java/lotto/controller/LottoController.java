@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import lotto.domain.AnswerLotto;
+import lotto.domain.LottoResultList;
+import lotto.domain.LottoTotalResult;
 import lotto.domain.MyLotto;
 import lotto.view.InputView;
 import lotto.view.OutputMessage;
@@ -28,6 +30,11 @@ public class LottoController {
         printMyLotto(myLotto);
 
         AnswerLotto answerLotto = setAnswer();
+
+        LottoResultList answer = new LottoResultList(myLotto, answerLotto);
+
+        LottoTotalResult answer2 = new LottoTotalResult(answer);
+        outputView.write(answer2.getTotalResultString());
     }
 
     private AnswerLotto setAnswer() throws IOException {
