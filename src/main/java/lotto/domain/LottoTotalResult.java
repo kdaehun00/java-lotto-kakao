@@ -5,16 +5,24 @@ import java.util.Map;
 
 public class LottoTotalResult {
 
+    private static int LOTTO_PRICE = 1000;
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
+    private final int totalPrice;
+    private final int totalProfit;
 
     public LottoTotalResult(LottoResultList lottoResultList) {
+        this.totalPrice = lottoResultList.lottoResults.size() * LOTTO_PRICE;
+        int profitSum = 0;
         for (Rank rank : Rank.values()) {
             rankCounts.put(rank, 0);
         }
 
         for (Rank rank : lottoResultList.getLottoResultRanks()) {
             rankCounts.put(rank, rankCounts.get(rank) + 1);
+            profitSum += rank.getWinningMoney();
         }
+
+        this.totalProfit = profitSum;
     }
 
     public int getCount(Rank rank) {
@@ -44,5 +52,9 @@ public class LottoTotalResult {
         }
 
         return sb.toString();
+    }
+
+    public double getProfit() {
+        return (double) totalProfit / totalPrice;
     }
 }

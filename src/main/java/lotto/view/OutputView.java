@@ -16,5 +16,6 @@ public class OutputView {
 
     public void write(String message) throws IOException {
         bw.write(message);
-        bw.flush();    }
+        bw.flush();
+    }
 }

@@ -34,7 +34,9 @@ public class LottoController {
         LottoResultList answer = new LottoResultList(myLotto, answerLotto);
 
         LottoTotalResult answer2 = new LottoTotalResult(answer);
+        outputView.write(OutputMessage.LOTTO_STATISTICS);
         outputView.write(answer2.getTotalResultString());
+        outputView.write(OutputMessage.LOTTO_PROFIT, answer2.getProfit());
     }
 
     private AnswerLotto setAnswer() throws IOException {
