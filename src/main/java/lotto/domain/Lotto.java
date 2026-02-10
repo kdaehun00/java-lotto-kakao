@@ -16,4 +16,8 @@ public class Lotto {
     public LottoResult judge(Lotto other) {
         return this.lottoNumberList.judge(other.lottoNumberList);
     }
+
+    public String getLottoNumString() {
+        return lottoNumberList.getLottoNumString();
+    }
 }

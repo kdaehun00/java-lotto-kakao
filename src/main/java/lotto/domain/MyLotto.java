@@ -19,4 +19,13 @@ public class MyLotto {
         return new Lotto(this.myLottoList.get(index));
     }
 
+    public String getMyLottoStringType() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : myLottoList) {
+            sb.append(lotto.getLottoNumString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
