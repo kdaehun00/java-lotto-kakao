@@ -71,4 +71,8 @@ public class LottoNumberList {
     public LottoNumber getBonusNum() {
         return bonusNum;
     }
+
+    public String getLottoNumString() {
+        return lottoNums.toString();
+    }
 }
