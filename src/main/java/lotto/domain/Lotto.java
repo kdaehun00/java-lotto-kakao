@@ -3,21 +3,21 @@ package lotto.domain;
 import lotto.util.LottoAutoCreator;
 
 public class Lotto {
-    private final LottoBallList lottoNumberList;
+    private final LottoBallList lottoBallList;
 
     public Lotto() {
-        this.lottoNumberList = LottoAutoCreator.lottoAutoCreate();
+        this.lottoBallList = LottoAutoCreator.lottoAutoCreate();
     }
 
     public Lotto(Lotto lotto) {
-        this.lottoNumberList = new LottoBallList(lotto.lottoNumberList);
+        this.lottoBallList = new LottoBallList(lotto.lottoBallList);
     }
 
-    public LottoResult judge(AnswerLotto other) {
-        return other.judge(this.lottoNumberList);
+    public LottoBallList getLottoBallList() {
+        return lottoBallList;
     }
 
     public String getLottoNumString() {
-        return lottoNumberList.getLottoNumString();
+        return lottoBallList.getLottoNumString();
     }
 }

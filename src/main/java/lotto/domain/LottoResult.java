@@ -16,4 +16,8 @@ public class LottoResult {
     public boolean isCorrectBonus() {
         return isCorrectBonus;
     }
+
+    public Rank calResult() {
+        return Rank.valueOf(ballCount, isCorrectBonus);
+    }
 }
