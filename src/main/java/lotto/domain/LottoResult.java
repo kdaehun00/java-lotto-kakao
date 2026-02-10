@@ -18,6 +18,21 @@ public class LottoResult {
     }
 
     public Rank calResult() {
-        return Rank.valueOf(ballCount, isCorrectBonus);
+        if (ballCount == 6) {
+            return Rank.FIRST;
+        }
+        if (ballCount == 5 && isCorrectBonus) {
+            return Rank.SECOND;
+        }
+        if (ballCount == 5) {
+            return Rank.THIRD;
+        }
+        if (ballCount == 4) {
+            return Rank.FOURTH;
+        }
+        if (ballCount == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.MISS;
     }
 }

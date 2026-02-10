@@ -13,4 +13,8 @@ public class OutputView {
         bw.write(outputMessage.format(args));
         bw.flush();
     }
+
+    public void write(String message) throws IOException {
+        bw.write(message);
+        bw.flush();    }
 }
