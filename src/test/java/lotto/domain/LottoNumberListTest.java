@@ -17,7 +17,7 @@ public class LottoNumberListTest {
     @Test
     @DisplayName("로또 번호 중복 테스트")
     void lottoNumberDuplicatedTest() {
-        ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 4, 5, 6));
+        ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 4, 5));
 
         assertThatThrownBy(() -> new LottoBallList(lottoNums))
                 .isInstanceOf(LottoException.class)
@@ -27,7 +27,7 @@ public class LottoNumberListTest {
     @Test
     @DisplayName("로또 번호 생성 테스트")
     void lottoNumberCreateTest() {
-        ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7));
+        ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
 
         assertThatCode(() -> new LottoBallList(lottoNums))
                 .doesNotThrowAnyException();
@@ -48,7 +48,7 @@ public class LottoNumberListTest {
     @Test
     @DisplayName("로또 숫자 가져오기")
     void getLottoNumList(){
-        ArrayList<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6, 7));
+        ArrayList<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         LottoBallList myLotto = new LottoBallList(lotto);
         String targetNumString = "[1, 2, 3, 4, 5, 6]";
         String lottoNumString = myLotto.getLottoNumString();
