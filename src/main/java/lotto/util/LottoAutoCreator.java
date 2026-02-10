@@ -1,13 +1,22 @@
 package lotto.util;
 
-import lotto.domain.LottoNumberList;
+import lotto.domain.LottoBallList;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class LottoAutoCreator {
 
-    public static LottoNumberList lottoAutoCreate() {
+    public static LottoBallList lottoAutoCreate() {
 
+        return getLottoBallList(6);
+    }
+
+    public static LottoBallList lottoAnswerCreate() {
+
+        return getLottoBallList(7);
+    }
+
+    private static LottoBallList getLottoBallList(int toIndex) {
         ArrayList<Integer> numbers = new ArrayList<>();
 
         for (int i = 1; i <= 45; i++) {
@@ -16,8 +25,8 @@ public class LottoAutoCreator {
 
         Collections.shuffle(numbers);
 
-        ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, 7));
+        ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, toIndex));
 
-        return new LottoNumberList(result);
+        return new LottoBallList(result);
     }
 }
