@@ -26,6 +26,7 @@ public class LottoAutoCreator {
         Collections.shuffle(numbers);
 
         ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, toIndex));
+        Collections.sort(result);
 
         return new LottoBallList(result);
     }
