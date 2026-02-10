@@ -3,18 +3,18 @@ package lotto.domain;
 import lotto.util.LottoAutoCreator;
 
 public class Lotto {
-    private final LottoNumberList lottoNumberList;
+    private final LottoBallList lottoNumberList;
 
     public Lotto() {
         this.lottoNumberList = LottoAutoCreator.lottoAutoCreate();
     }
 
     public Lotto(Lotto lotto) {
-        this.lottoNumberList = new LottoNumberList(lotto.lottoNumberList);
+        this.lottoNumberList = new LottoBallList(lotto.lottoNumberList);
     }
 
-    public LottoResult judge(Lotto other) {
-        return this.lottoNumberList.judge(other.lottoNumberList);
+    public LottoResult judge(AnswerLotto other) {
+        return other.judge(this.lottoNumberList);
     }
 
     public String getLottoNumString() {
