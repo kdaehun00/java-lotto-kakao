@@ -3,6 +3,7 @@ package lotto.util;
 import lotto.domain.LottoBalls;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 public class LottoAutoCreator {
 
@@ -28,6 +29,6 @@ public class LottoAutoCreator {
         ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, toIndex));
         Collections.sort(result);
 
-        return new LottoBalls(result);
+        return new LottoBalls(new HashSet<>(result));
     }
 }
