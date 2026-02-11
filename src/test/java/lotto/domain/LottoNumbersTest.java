@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
-public class LottoNumberListTest {
+public class LottoNumbersTest {
 
     @Test
     @DisplayName("로또가 완전하지 않으면(번호가 6개가 아니면) 예외가 발생한다")
