@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoTotalResult {
-
     private final static int LOTTO_PRICE = 1000;
+    private final static int LOTTO_RESULT_DEFAULT = 0;
+
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
     private final int totalPrice;
     private final int totalProfit;
@@ -13,9 +16,7 @@ public class LottoTotalResult {
     public LottoTotalResult(LottoResults lottoResults) {
         this.totalPrice = lottoResults.getLottoResultsSize() * LOTTO_PRICE;
         int profitSum = 0;
-        for (Rank rank : Rank.values()) {
-            rankCounts.put(rank, 0);
-        }
+        initRankCounts();
 
         for (Rank rank : lottoResults.getLottoResultRanks()) {
             rankCounts.put(rank, rankCounts.get(rank) + 1);
@@ -25,31 +26,32 @@ public class LottoTotalResult {
         this.totalProfit = profitSum;
     }
 
-    public int getCount(Rank rank) {
-        return rankCounts.getOrDefault(rank, 0);
-    }
-
-    public Map<Rank, Integer> getRankCounts() {
-        return rankCounts;
+    private void initRankCounts() {
+        for (Rank rank : Rank.values()) {
+            rankCounts.put(rank, LOTTO_RESULT_DEFAULT);
+        }
     }
 
     public String getTotalResultString() {
         StringBuilder sb = new StringBuilder();
 
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.MISS) {
-                continue;
-            }
-
-            int count = rankCounts.getOrDefault(rank, 0);
-
-            getResultString(rank, sb, count);
+        for (Rank rank : getValidRanks()) {
+            int count = rankCounts.getOrDefault(rank, LOTTO_RESULT_DEFAULT);
+            sb.append(getRankString(rank, count));
         }
 
         return sb.toString();
     }
 
-    private void getResultString(Rank rank, StringBuilder sb, int count) {
+    private List<Rank> getValidRanks() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.MISS)
+                .toList();
+    }
+
+    private String getRankString(Rank rank, int count) {
+        StringBuilder sb = new StringBuilder();
+
         sb.append(rank.getBallCount())
                 .append("개 일치");
         if (rank.equals(Rank.SECOND)) {
@@ -60,6 +62,8 @@ public class LottoTotalResult {
                 .append("원) - ")
                 .append(count)
                 .append("개\n");
+
+        return sb.toString();
     }
 
     public double getProfit() {

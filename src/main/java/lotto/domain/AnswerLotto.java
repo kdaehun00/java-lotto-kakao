@@ -3,8 +3,6 @@ package lotto.domain;
 import java.util.Set;
 
 public class AnswerLotto {
-    private final static int LOTTO_LENGTH = 6;
-
     private final LottoBalls lottoBalls;
     private final LottoNumber bonusNum;
 
@@ -26,19 +24,19 @@ public class AnswerLotto {
         int ballCount = 0;
 
         for (LottoNumber lottoNumber : this.lottoBalls.getLottoNums()) {
-            if (other.getLottoNums().contains(lottoNumber)) {
-                ballCount += 1;
-            }
+            ballCount += matchBall(other, lottoNumber);
         }
         return ballCount;
     }
 
-    private boolean isBonusCorrect(LottoBalls other) {
-        for (LottoNumber lottoNumber : other.getLottoNums()) {
-            if (this.bonusNum.equals(lottoNumber)) {
-                return true;
-            }
+    private int matchBall(LottoBalls other, LottoNumber lottoNumber) {
+        if (other.getLottoNums().contains(lottoNumber)) {
+            return 1;
         }
-        return false;
+        return 0;
+    }
+
+    private boolean isBonusCorrect(LottoBalls other) {
+        return other.getLottoNums().contains(this.bonusNum);
     }
 }
