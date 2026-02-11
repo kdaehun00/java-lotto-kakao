@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoBalls extends LottoNumbers {
-    protected final static int LOTTO_LENGTH = 6;
+    private final static int LOTTO_LENGTH = 6;
 
     public LottoBalls(Set<Integer> lottoNums) {
         checkLottoLength(lottoNums);

@@ -3,11 +3,12 @@ package lotto.domain;
 import java.util.ArrayList;
 
 public class LottoResults {
-    ArrayList<LottoResult> lottoResults = new ArrayList<>();
+    private final ArrayList<LottoResult> lottoResults = new ArrayList<>();
 
     public LottoResults(MyLotto myLotto, AnswerLotto answerLotto) {
-        for (Lotto lotto : myLotto.myLottoList) {
-            lottoResults.add(answerLotto.judge(lotto.getLottoBallList()));
+        for (int i = 0; i < myLotto.getSize(); i++) {
+            LottoBalls lottoBalls = myLotto.getMyLotto(i).getLottoBallList();
+            lottoResults.add(answerLotto.judge(lottoBalls));
         }
     }
 
@@ -19,5 +20,9 @@ public class LottoResults {
         }
 
         return ranks;
+    }
+
+    public int getLottoResultsSize() {
+        return this.lottoResults.size();
     }
 }

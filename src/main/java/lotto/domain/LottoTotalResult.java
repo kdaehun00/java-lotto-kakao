@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class LottoTotalResult {
 
-    private static int LOTTO_PRICE = 1000;
+    private final static int LOTTO_PRICE = 1000;
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
     private final int totalPrice;
     private final int totalProfit;
 
     public LottoTotalResult(LottoResults lottoResults) {
-        this.totalPrice = lottoResults.lottoResults.size() * LOTTO_PRICE;
+        this.totalPrice = lottoResults.getLottoResultsSize() * LOTTO_PRICE;
         int profitSum = 0;
         for (Rank rank : Rank.values()) {
             rankCounts.put(rank, 0);

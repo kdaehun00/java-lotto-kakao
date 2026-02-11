@@ -8,9 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AnswerLotto extends LottoNumbers{
-    protected final static int LOTTO_LENGTH = 6;
+    private final static int LOTTO_LENGTH = 6;
 
-    private final static int BONUS_NUM_INDEX = 6;
     private final LottoNumber bonusNum;
 
     public AnswerLotto(Set<Integer> lottoNums, int bonusNum) {
