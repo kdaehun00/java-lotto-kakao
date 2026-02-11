@@ -9,7 +9,6 @@ import lotto.view.OutputMessage;
 import lotto.view.OutputView;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class LottoController {
