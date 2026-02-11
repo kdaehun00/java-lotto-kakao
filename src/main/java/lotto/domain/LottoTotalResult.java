@@ -43,15 +43,23 @@ public class LottoTotalResult {
 
             int count = rankCounts.getOrDefault(rank, 0);
 
-            sb.append(rank.getRanking())
-                    .append("개 일치 (")
-                    .append(rank.getWinningMoney())
-                    .append("원) - ")
-                    .append(count)
-                    .append("개\n");
+            getResultString(rank, sb, count);
         }
 
         return sb.toString();
+    }
+
+    private void getResultString(Rank rank, StringBuilder sb, int count) {
+        sb.append(rank.getBallCount())
+                .append("개 일치");
+        if (rank.equals(Rank.SECOND)) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" (")
+                .append(rank.getWinningMoney())
+                .append("원) - ")
+                .append(count)
+                .append("개\n");
     }
 
     public double getProfit() {
