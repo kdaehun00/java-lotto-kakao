@@ -3,10 +3,9 @@ package lotto.domain;
 import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Objects;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AnswerLotto extends LottoNumbers{
     protected final static int LOTTO_LENGTH = 6;
@@ -14,38 +13,38 @@ public class AnswerLotto extends LottoNumbers{
     private final static int BONUS_NUM_INDEX = 6;
     private final LottoNumber bonusNum;
 
-    public AnswerLotto(ArrayList<Integer> lottoNums) {
-        Set<Integer> numSet = new LinkedHashSet<>();
+    public AnswerLotto(Set<Integer> lottoNums, int bonusNum) {
 
-        for (int i = 0; i < LOTTO_LENGTH; i++) {
-            int currentNum = lottoNums.get(i);
-            numSet.add(currentNum);
+        checkLottoLength(lottoNums);
 
-            this.lottoNums.add(new LottoNumber(currentNum));
-        }
+        this.lottoNums = lottoNums.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toCollection(HashSet::new));
 
-        checkLottoLength(numSet);
-        this.bonusNum = new LottoNumber(lottoNums.get(BONUS_NUM_INDEX));
+        this.bonusNum = new LottoNumber(bonusNum);
     }
 
     private static void checkLottoLength(Set<Integer> numSet) {
-        if (!(numSet.size() == LOTTO_LENGTH)) {
+        if ((numSet.size() != LOTTO_LENGTH)) {
             throw new LottoException(ExceptionCode.NUMBER_DUPLICATED);
         }
     }
 
     public LottoResult judge(LottoBalls other) {
-        int ballCount = 0;
         boolean isCorrectBonus = isBonusCorrect(other);
 
-        ballCount = countBall(other, ballCount);
+        int ballCount = countBall(other);
 
         return new LottoResult(ballCount, isCorrectBonus);
     }
 
-    private int countBall(LottoBalls other, int ballCount) {
-        for (int i = 0; i < LOTTO_LENGTH; i++) {
-            if (Objects.equals(this.lottoNums.get(i), other.lottoNums.get(i))) {
+    private int countBall(LottoBalls other) {
+        int ballCount = 0;
+
+        for (LottoNumber lottoNumber : this.lottoNums) {
+            System.out.println(lottoNumber.getNumber() + ", " + other.getLottoNums());
+            if (other.getLottoNums().contains(lottoNumber)) {
+                System.out.println("test");
                 ballCount += 1;
             }
         }

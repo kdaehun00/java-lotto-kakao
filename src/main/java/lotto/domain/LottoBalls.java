@@ -3,29 +3,22 @@ package lotto.domain;
 import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoBalls extends LottoNumbers {
     protected final static int LOTTO_LENGTH = 6;
 
-    public LottoBalls(ArrayList<Integer> lottoNums) {
-        Set<Integer> numSet = new LinkedHashSet<>();
+    public LottoBalls(Set<Integer> lottoNums) {
+        checkLottoLength(lottoNums);
 
-        for (int i = 0; i < LOTTO_LENGTH; i++) {
-            int currentNum = lottoNums.get(i);
-            numSet.add(currentNum);
-
-            this.lottoNums.add(new LottoNumber(currentNum));
-        }
-
-        checkLottoLength(numSet);
+        this.lottoNums = lottoNums.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public LottoBalls(LottoBalls other) {
-        this.lottoNums = new ArrayList<>(other.lottoNums);
+        this.lottoNums = new LinkedHashSet<>(other.lottoNums);
     }
 
     private static void checkLottoLength(Set<Integer> numSet) {
@@ -34,7 +27,7 @@ public class LottoBalls extends LottoNumbers {
         }
     }
 
-    public List<LottoNumber> getLottoNums() {
+    public Set<LottoNumber> getLottoNums() {
         return lottoNums;
     }
 

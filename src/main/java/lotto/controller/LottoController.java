@@ -10,6 +10,7 @@ import lotto.view.OutputView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class LottoController {
     private final InputView inputView;
@@ -41,13 +42,12 @@ public class LottoController {
 
     private AnswerLotto setAnswer() throws IOException {
         outputView.write(OutputMessage.INPUT_WINNING_NUMBERS);
-        ArrayList<Integer> answerList = inputView.readWinningNumbers();
+        Set<Integer> answers = inputView.readWinningNumbers();
 
         outputView.write(OutputMessage.INPUT_BONUS_NUMBER);
         int bonusNum = inputView.readBonusNumber();
-        answerList.add(bonusNum);
 
-        return new AnswerLotto(answerList);
+        return new AnswerLotto(answers, bonusNum);
     }
 
     private void printMyLotto(MyLotto myLotto) throws IOException {
