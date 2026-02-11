@@ -1,7 +1,8 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LottoNumbers {
-    protected ArrayList<LottoNumber> lottoNums = new ArrayList<>();
+    protected List<LottoNumber> lottoNums = new ArrayList<>();
 }

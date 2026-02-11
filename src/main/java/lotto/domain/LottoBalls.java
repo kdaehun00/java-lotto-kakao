@@ -5,6 +5,7 @@ import lotto.exception.LottoException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LottoBalls extends LottoNumbers {
@@ -33,7 +34,7 @@ public class LottoBalls extends LottoNumbers {
         }
     }
 
-    public ArrayList<LottoNumber> getLottoNums() {
+    public List<LottoNumber> getLottoNums() {
         return lottoNums;
     }
 
