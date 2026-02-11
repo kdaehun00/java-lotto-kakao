@@ -6,19 +6,20 @@ import lotto.exception.LottoException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class LottoBalls extends LottoNumbers {
+public class LottoBalls {
     private final static int LOTTO_LENGTH = 6;
+    private final Set<LottoNumber> lotto;
 
     public LottoBalls(Set<Integer> lottoNums) {
         checkLottoLength(lottoNums);
 
-        this.lottoNums = lottoNums.stream()
+        this.lotto = lottoNums.stream()
                 .map(LottoNumber::new)
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+                .collect(Collectors.toCollection(HashSet::new));
     }
 
     public LottoBalls(LottoBalls other) {
-        this.lottoNums = new LinkedHashSet<>(other.lottoNums);
+        this.lotto = new HashSet<>(other.lotto);
     }
 
     private static void checkLottoLength(Set<Integer> numSet) {
@@ -28,10 +29,10 @@ public class LottoBalls extends LottoNumbers {
     }
 
     public Set<LottoNumber> getLottoNums() {
-        return lottoNums;
+        return lotto;
     }
 
     public String getLottoNumString() {
-        return lottoNums.toString();
+        return lotto.toString();
     }
 }
