@@ -1,22 +1,22 @@
 package lotto.util;
 
-import lotto.domain.LottoBallList;
+import lotto.domain.LottoBalls;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class LottoAutoCreator {
 
-    public static LottoBallList lottoAutoCreate() {
+    public static LottoBalls lottoAutoCreate() {
 
         return getLottoBallList(6);
     }
 
-    public static LottoBallList lottoAnswerCreate() {
+    public static LottoBalls lottoAnswerCreate() {
 
         return getLottoBallList(7);
     }
 
-    private static LottoBallList getLottoBallList(int toIndex) {
+    private static LottoBalls getLottoBallList(int toIndex) {
         ArrayList<Integer> numbers = new ArrayList<>();
 
         for (int i = 1; i <= 45; i++) {
@@ -28,6 +28,6 @@ public class LottoAutoCreator {
         ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, toIndex));
         Collections.sort(result);
 
-        return new LottoBallList(result);
+        return new LottoBalls(result);
     }
 }

@@ -10,14 +10,14 @@ public class LottoTotalResult {
     private final int totalPrice;
     private final int totalProfit;
 
-    public LottoTotalResult(LottoResultList lottoResultList) {
-        this.totalPrice = lottoResultList.lottoResults.size() * LOTTO_PRICE;
+    public LottoTotalResult(LottoResults lottoResults) {
+        this.totalPrice = lottoResults.lottoResults.size() * LOTTO_PRICE;
         int profitSum = 0;
         for (Rank rank : Rank.values()) {
             rankCounts.put(rank, 0);
         }
 
-        for (Rank rank : lottoResultList.getLottoResultRanks()) {
+        for (Rank rank : lottoResults.getLottoResultRanks()) {
             rankCounts.put(rank, rankCounts.get(rank) + 1);
             profitSum += rank.getWinningMoney();
         }

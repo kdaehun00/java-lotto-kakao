@@ -2,10 +2,10 @@ package lotto.domain;
 
 import java.util.ArrayList;
 
-public class LottoResultList {
+public class LottoResults {
     ArrayList<LottoResult> lottoResults = new ArrayList<>();
 
-    public LottoResultList(MyLotto myLotto, AnswerLotto answerLotto) {
+    public LottoResults(MyLotto myLotto, AnswerLotto answerLotto) {
         for (Lotto lotto : myLotto.myLottoList) {
             lottoResults.add(answerLotto.judge(lotto.getLottoBallList()));
         }

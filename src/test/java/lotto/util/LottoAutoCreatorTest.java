@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.domain.LottoBallList;
+import lotto.domain.LottoBalls;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class LottoAutoCreatorTest {
     @DisplayName("정상적으로 로또 생성")
     void duplicatedNumberTest() {
         ArrayList<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-        LottoBallList myLotto = new LottoBallList(lotto);
+        LottoBalls myLotto = new LottoBalls(lotto);
 
         assertThat(myLotto.getLottoNums()).hasSize(6);
     }

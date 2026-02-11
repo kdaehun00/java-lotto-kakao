@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.AnswerLotto;
-import lotto.domain.LottoResultList;
+import lotto.domain.LottoResults;
 import lotto.domain.LottoTotalResult;
 import lotto.domain.MyLotto;
 import lotto.view.InputView;
@@ -31,7 +31,7 @@ public class LottoController {
 
         AnswerLotto answerLotto = setAnswer();
 
-        LottoResultList answer = new LottoResultList(myLotto, answerLotto);
+        LottoResults answer = new LottoResults(myLotto, answerLotto);
 
         LottoTotalResult answer2 = new LottoTotalResult(answer);
         outputView.write(OutputMessage.LOTTO_STATISTICS);
