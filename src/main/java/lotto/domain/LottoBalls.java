@@ -23,7 +23,7 @@ public class LottoBalls extends LottoNumbers {
 
     private static void checkLottoLength(Set<Integer> numSet) {
         if (!(numSet.size() == LOTTO_LENGTH)) {
-            throw new LottoException(ExceptionCode.NUMBER_DUPLICATED);
+            throw new LottoException(ExceptionCode.INVALID_LOTTO_NUMBER_COUNT);
         }
     }
 

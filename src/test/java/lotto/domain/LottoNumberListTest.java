@@ -20,7 +20,7 @@ public class LottoNumberListTest {
 
         assertThatThrownBy(() -> new LottoBalls(lottoNums))
                 .isInstanceOf(LottoException.class)
-                .hasMessage(ExceptionCode.NUMBER_DUPLICATED.getMsg());
+                .hasMessage(ExceptionCode.INVALID_LOTTO_NUMBER_COUNT.getMsg());
     }
 
     @Test
