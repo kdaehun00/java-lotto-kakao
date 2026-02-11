@@ -1,32 +1,17 @@
 package lotto.domain;
 
-import lotto.exception.ExceptionCode;
-import lotto.exception.LottoException;
-
-import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-public class AnswerLotto extends LottoNumbers{
+public class AnswerLotto {
     private final static int LOTTO_LENGTH = 6;
 
+    private final LottoBalls lottoBalls;
     private final LottoNumber bonusNum;
 
     public AnswerLotto(Set<Integer> lottoNums, int bonusNum) {
 
-        checkLottoLength(lottoNums);
-
-        this.lottoNums = lottoNums.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toCollection(HashSet::new));
-
+        this.lottoBalls = new LottoBalls(lottoNums);
         this.bonusNum = new LottoNumber(bonusNum);
-    }
-
-    private static void checkLottoLength(Set<Integer> numSet) {
-        if ((numSet.size() != LOTTO_LENGTH)) {
-            throw new LottoException(ExceptionCode.INVALID_LOTTO_NUMBER_COUNT);
-        }
     }
 
     public LottoResult judge(LottoBalls other) {
@@ -40,10 +25,8 @@ public class AnswerLotto extends LottoNumbers{
     private int countBall(LottoBalls other) {
         int ballCount = 0;
 
-        for (LottoNumber lottoNumber : this.lottoNums) {
-            System.out.println(lottoNumber.getNumber() + ", " + other.getLottoNums());
+        for (LottoNumber lottoNumber : this.lottoBalls.getLottoNums()) {
             if (other.getLottoNums().contains(lottoNumber)) {
-                System.out.println("test");
                 ballCount += 1;
             }
         }
@@ -51,7 +34,7 @@ public class AnswerLotto extends LottoNumbers{
     }
 
     private boolean isBonusCorrect(LottoBalls other) {
-        for (LottoNumber lottoNumber : other.lottoNums) {
+        for (LottoNumber lottoNumber : other.getLottoNums()) {
             if (this.bonusNum.equals(lottoNumber)) {
                 return true;
             }
