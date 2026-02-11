@@ -4,10 +4,13 @@ import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
 public class LottoNumber {
+    private final static int LOTTO_MIN_NUM = 1;
+    private final static int LOTTO_MAX_NUM = 45;
+
     private final int number;
 
     public LottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_MIN_NUM || number > LOTTO_MAX_NUM) {
             throw new LottoException(ExceptionCode.INVALID_NUMBER_RANGE);
         }
         this.number = number;
