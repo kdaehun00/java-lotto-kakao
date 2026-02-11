@@ -19,7 +19,7 @@ public class LottoNumberListTest {
     void lottoNumberDuplicatedTest() {
         ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 4, 5));
 
-        assertThatThrownBy(() -> new LottoBallList(lottoNums))
+        assertThatThrownBy(() -> new LottoBalls(lottoNums))
                 .isInstanceOf(LottoException.class)
                 .hasMessage(ExceptionCode.NUMBER_DUPLICATED.getMsg());
     }
@@ -29,7 +29,7 @@ public class LottoNumberListTest {
     void lottoNumberCreateTest() {
         ArrayList<Integer> lottoNums = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThatCode(() -> new LottoBallList(lottoNums))
+        assertThatCode(() -> new LottoBalls(lottoNums))
                 .doesNotThrowAnyException();
     }
 
@@ -37,7 +37,7 @@ public class LottoNumberListTest {
     @DisplayName("로또 번호 일치 개수 검증")
     void judgeLottoNum() {
         AnswerLotto targetLotto = new AnswerLotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 10, 7)));
-        LottoBallList userLotto = new LottoBallList(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
+        LottoBalls userLotto = new LottoBalls(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6)));
 
         LottoResult lottoResult = targetLotto.judge(userLotto);
 
@@ -49,7 +49,7 @@ public class LottoNumberListTest {
     @DisplayName("로또 숫자 가져오기")
     void getLottoNumList(){
         ArrayList<Integer> lotto = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-        LottoBallList myLotto = new LottoBallList(lotto);
+        LottoBalls myLotto = new LottoBalls(lotto);
         String targetNumString = "[1, 2, 3, 4, 5, 6]";
         String lottoNumString = myLotto.getLottoNumString();
 

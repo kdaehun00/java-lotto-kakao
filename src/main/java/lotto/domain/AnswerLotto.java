@@ -8,7 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class AnswerLotto extends LottoNumberList{
+public class AnswerLotto extends LottoNumbers{
     protected final static int LOTTO_LENGTH = 6;
 
     private final static int BONUS_NUM_INDEX = 6;
@@ -34,7 +34,7 @@ public class AnswerLotto extends LottoNumberList{
         }
     }
 
-    public LottoResult judge(LottoBallList other) {
+    public LottoResult judge(LottoBalls other) {
         int ballCount = 0;
         boolean isCorrectBonus = isBonusCorrect(other);
 
@@ -43,7 +43,7 @@ public class AnswerLotto extends LottoNumberList{
         return new LottoResult(ballCount, isCorrectBonus);
     }
 
-    private int countBall(LottoBallList other, int ballCount) {
+    private int countBall(LottoBalls other, int ballCount) {
         for (int i = 0; i < LOTTO_LENGTH; i++) {
             if (Objects.equals(this.lottoNums.get(i), other.lottoNums.get(i))) {
                 ballCount += 1;
@@ -52,7 +52,7 @@ public class AnswerLotto extends LottoNumberList{
         return ballCount;
     }
 
-    private boolean isBonusCorrect(LottoBallList other) {
+    private boolean isBonusCorrect(LottoBalls other) {
         for (LottoNumber lottoNumber : other.lottoNums) {
             if (this.bonusNum.equals(lottoNumber)) {
                 return true;
