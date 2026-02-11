@@ -14,9 +14,9 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 public class LottoNumberListTest {
 
     @Test
-    @DisplayName("로또 번호 중복 테스트")
+    @DisplayName("로또가 완전하지 않으면(번호가 6개가 아니면) 예외가 발생한다")
     void lottoNumberDuplicatedTest() {
-        Set<Integer> lottoNums = new LinkedHashSet<>(List.of(1, 2, 3, 4, 4, 5));
+        Set<Integer> lottoNums = new HashSet<>(List.of(1, 2, 3, 4, 4, 5));
 
         assertThatThrownBy(() -> new LottoBalls(lottoNums))
                 .isInstanceOf(LottoException.class)
@@ -24,11 +24,15 @@ public class LottoNumberListTest {
     }
 
     @Test
-    @DisplayName("로또 번호 생성 테스트")
+    @DisplayName("로또 번호가 정상적으로 생성된다")
     void lottoNumberCreateTest() {
-        Set<Integer> lottoNums = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
+        Set<Integer> lottoNums = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
+        Set<Integer> duplicatedLottoNums = new HashSet<>(List.of(1, 2, 3, 4, 5, 5, 6));
 
         assertThatCode(() -> new LottoBalls(lottoNums))
+                .doesNotThrowAnyException();
+
+        assertThatCode(() -> new LottoBalls(duplicatedLottoNums))
                 .doesNotThrowAnyException();
     }
 
@@ -47,7 +51,7 @@ public class LottoNumberListTest {
     @Test
     @DisplayName("로또 숫자 가져오기")
     void getLottoNumList(){
-        Set<Integer> lotto = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
+        Set<Integer> lotto = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
         LottoBalls myLotto = new LottoBalls(lotto);
         String targetNumString = "[1, 2, 3, 4, 5, 6]";
         String lottoNumString = myLotto.getLottoNumString();
