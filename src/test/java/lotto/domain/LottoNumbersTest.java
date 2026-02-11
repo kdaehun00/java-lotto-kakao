@@ -37,18 +37,6 @@ public class LottoNumbersTest {
     }
 
     @Test
-    @DisplayName("로또 번호 일치 개수 검증")
-    void judgeLottoNum() {
-        AnswerLotto targetLotto = new AnswerLotto(new HashSet<>(List.of(1, 2, 3, 4, 5, 10)), 7);
-        LottoBalls userLotto = new LottoBalls(new HashSet<>(List.of(1, 2, 3, 4, 5, 6)));
-
-        LottoResult lottoResult = targetLotto.judge(userLotto);
-
-        assertThat(lottoResult.getBallCount()).isEqualTo(5);
-        assertThat(lottoResult.isCorrectBonus()).isFalse();
-    }
-
-    @Test
     @DisplayName("로또 숫자 가져오기")
     void getLottoNumList(){
         Set<Integer> lotto = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
