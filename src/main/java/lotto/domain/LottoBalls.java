@@ -33,6 +33,9 @@ public class LottoBalls {
     }
 
     public String getLottoNumString() {
-        return lotto.toString();
+        List<LottoNumber> lottoArr = new ArrayList<>(lotto);
+
+        Collections.sort(lottoArr);
+        return lottoArr.toString();
     }
 }

@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
     private final static int LOTTO_MIN_NUM = 1;
     private final static int LOTTO_MAX_NUM = 45;
 
@@ -18,6 +18,11 @@ public class LottoNumber {
 
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return this.number - o.number;
     }
 
     @Override
