@@ -1,19 +1,19 @@
 package lotto.util;
 
-import lotto.domain.LottoBalls;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoAutoCreator {
 
-    public static LottoBalls lottoAutoCreate() {
-
-        return getLottoBallList(6);
+    public static Lotto lottoAutoCreate() {
+        return getLottoBallList();
     }
 
-    private static LottoBalls getLottoBallList(int toIndex) {
-        ArrayList<Integer> numbers = new ArrayList<>();
+    private static Lotto getLottoBallList() {
+        List<Integer> numbers = new ArrayList<>();
 
         for (int i = 1; i <= 45; i++) {
             numbers.add(i);
@@ -21,9 +21,12 @@ public class LottoAutoCreator {
 
         Collections.shuffle(numbers);
 
-        ArrayList<Integer> result = new ArrayList<>(numbers.subList(0, toIndex));
-        Collections.sort(result);
+        List<Integer> selected = numbers.subList(0, 6);
 
-        return new LottoBalls(new HashSet<>(result));
+        Set<LottoNumber> result = selected.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toSet());
+
+        return new Lotto(result);
     }
 }

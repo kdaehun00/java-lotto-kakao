@@ -38,7 +38,7 @@ public class LottoController {
 
     private AnswerLotto setAnswer() throws IOException {
         outputView.write(OutputMessage.INPUT_WINNING_NUMBERS);
-        Set<Integer> answers = inputView.readWinningNumbers();
+        Set<LottoNumber> answers = inputView.readWinningNumbers();
 
         outputView.write(OutputMessage.INPUT_BONUS_NUMBER);
         int bonusNum = inputView.readBonusNumber();
