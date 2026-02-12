@@ -12,11 +12,6 @@ public class LottoAutoCreator {
         return getLottoBallList(6);
     }
 
-    public static LottoBalls lottoAnswerCreate() {
-
-        return getLottoBallList(7);
-    }
-
     private static LottoBalls getLottoBallList(int toIndex) {
         ArrayList<Integer> numbers = new ArrayList<>();
 
