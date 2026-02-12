@@ -4,18 +4,20 @@ import java.util.Arrays;
 
 public enum Rank {
 
-    MISS(0, 0),
-    FIFTH(3, 5_000),
-    FOURTH(4, 50_000),
-    THIRD(5, 1_500_000),
-    SECOND(5, 30_000_000),
-    FIRST(6, 2_000_000_000);
+    MISS(0, false, 0),
+    FIFTH(3, false, 5_000),
+    FOURTH(4, false, 50_000),
+    THIRD(5, false, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    FIRST(6, false, 2_000_000_000);
 
     private final int ballCount;
+    private final boolean matchBonus;
     private final int winningMoney;
 
-    Rank(int ballCount, int winningMoney) {
+    Rank(int ballCount, boolean matchBonus, int winningMoney) {
         this.ballCount = ballCount;
+        this.matchBonus = matchBonus;
         this.winningMoney = winningMoney;
     }
 
@@ -35,12 +37,7 @@ public enum Rank {
     }
 
     private boolean matches(int countOfMatch, boolean matchBonus) {
-        if (this == SECOND) {
-            return countOfMatch == 5 && matchBonus;
-        }
-        if (this == THIRD) {
-            return countOfMatch == 5 && !matchBonus;
-        }
-        return this.ballCount == countOfMatch;
+        return this.ballCount == countOfMatch
+                && this.matchBonus == matchBonus;
     }
 }
