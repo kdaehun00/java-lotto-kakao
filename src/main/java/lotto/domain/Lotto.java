@@ -3,8 +3,8 @@ package lotto.domain;
 import lotto.util.LottoAutoCreator;
 
 public class Lotto {
-    private final LottoBalls lottoBalls;
     private static final int PRICE = 1000;
+    private final LottoBalls lottoBalls;
 
     public Lotto() {
         this.lottoBalls = LottoAutoCreator.lottoAutoCreate();
