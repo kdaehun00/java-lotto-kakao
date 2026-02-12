@@ -11,14 +11,16 @@ import java.util.Set;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final LottoStore lottoStore;
 
-    public LottoController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
+    public LottoController(InputView inputView, OutputView outputView, LottoStore lottoStore) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.lottoStore = lottoStore;
     }
 
     public static void main(String[] args) throws IOException {
-        new LottoController().run();
+        new LottoController(new InputView(), new OutputView(), new LottoStore()).run();
     }
 
     public void run() throws IOException {
@@ -55,8 +57,7 @@ public class LottoController {
         outputView.write(OutputMessage.INPUT_PURCHASE_AMOUNT);
 
         int count = inputView.readPurchaseAmount() / Lotto.getPrice();
-
-        MyLotto myLotto = new MyLotto(count);
+        MyLotto myLotto = lottoStore.buyLotto(count);
         outputView.write(OutputMessage.PURCHASE_COUNT, count);
         return myLotto;
     }

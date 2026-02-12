@@ -1,17 +1,12 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.util.LottoAutoCreator.lottoAutoCreate;
-
 public class MyLotto {
-    private final List<Lotto> myLottoList = new ArrayList<>();
+    private final List<Lotto> myLottoList;
 
-    public MyLotto(int size) {
-        for (int i = 0; i < size; i++) {
-            myLottoList.add(lottoAutoCreate());
-        }
+    public MyLotto(List<Lotto> myLottoList) {
+        this.myLottoList = List.copyOf(myLottoList);
     }
 
     public int getSize() {
