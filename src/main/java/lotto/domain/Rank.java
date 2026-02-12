@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum Rank {
 
-    MISS(0, false, 0),
+    MISS(-1, false, 0),
     FIFTH(3, false, 5_000),
     FOURTH(4, false, 50_000),
     THIRD(5, false, 1_500_000),
@@ -31,6 +31,7 @@ public enum Rank {
 
     public static Rank valueOf(int countOfMatch, boolean matchBonus) {
         return Arrays.stream(values())
+                .filter(rank -> rank != MISS)
                 .filter(rank -> rank.matches(countOfMatch, matchBonus))
                 .findFirst()
                 .orElse(MISS);
