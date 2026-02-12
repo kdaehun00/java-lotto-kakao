@@ -4,6 +4,7 @@ import lotto.util.LottoAutoCreator;
 
 public class Lotto {
     private final LottoBalls lottoBalls;
+    private static final int PRICE = 1000;
 
     public Lotto() {
         this.lottoBalls = LottoAutoCreator.lottoAutoCreate();
@@ -17,7 +18,11 @@ public class Lotto {
         return lottoBalls;
     }
 
-    public String getLottoNumString() {
-        return lottoBalls.getLottoNumString();
+    public String getLottoNumberString() {
+        return lottoBalls.getLottoNumberString();
+    }
+
+    public static int getPrice() {
+        return PRICE;
     }
 }

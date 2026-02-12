@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.AnswerLotto;
-import lotto.domain.LottoResults;
-import lotto.domain.LottoTotalResult;
-import lotto.domain.MyLotto;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputMessage;
 import lotto.view.OutputView;
@@ -57,7 +54,7 @@ public class LottoController {
     private MyLotto makeMyLotto() throws IOException {
         outputView.write(OutputMessage.INPUT_PURCHASE_AMOUNT);
 
-        int count = inputView.readPurchaseAmount() / 1000;
+        int count = inputView.readPurchaseAmount() / Lotto.getPrice();
 
         MyLotto myLotto = new MyLotto(count);
         outputView.write(OutputMessage.PURCHASE_COUNT, count);

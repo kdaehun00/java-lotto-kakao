@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoTotalResult {
-    private final static int LOTTO_PRICE = 1000;
     private final static int LOTTO_RESULT_DEFAULT = 0;
 
     private final Map<Rank, Integer> rankCounts = new EnumMap<>(Rank.class);
@@ -14,7 +13,7 @@ public class LottoTotalResult {
     private final int totalProfit;
 
     public LottoTotalResult(LottoResults lottoResults) {
-        this.totalPrice = lottoResults.getLottoResultsSize() * LOTTO_PRICE;
+        this.totalPrice = lottoResults.getLottoResultsSize() * Lotto.getPrice();
         int profitSum = 0;
         initRankCounts();
 

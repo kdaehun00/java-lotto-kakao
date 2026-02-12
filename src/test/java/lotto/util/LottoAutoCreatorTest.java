@@ -19,7 +19,7 @@ public class LottoAutoCreatorTest {
         Set<Integer> lotto = new HashSet<>(List.of(1, 2, 3, 4, 5, 6));
         LottoBalls myLotto = new LottoBalls(lotto);
 
-        assertThat(myLotto.getLottoNums()).hasSize(6);
+        assertThat(myLotto.getLottoBalls()).hasSize(6);
     }
 
     @Test

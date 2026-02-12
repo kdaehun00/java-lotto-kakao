@@ -23,20 +23,20 @@ public class AnswerLotto {
     private int countBall(LottoBalls other) {
         int ballCount = 0;
 
-        for (LottoNumber lottoNumber : this.lottoBalls.getLottoNums()) {
+        for (LottoNumber lottoNumber : this.lottoBalls.getLottoBalls()) {
             ballCount += matchBall(other, lottoNumber);
         }
         return ballCount;
     }
 
     private int matchBall(LottoBalls other, LottoNumber lottoNumber) {
-        if (other.getLottoNums().contains(lottoNumber)) {
+        if (other.getLottoBalls().contains(lottoNumber)) {
             return 1;
         }
         return 0;
     }
 
     private boolean isBonusCorrect(LottoBalls other) {
-        return other.getLottoNums().contains(this.bonusNum);
+        return other.getLottoBalls().contains(this.bonusNum);
     }
 }

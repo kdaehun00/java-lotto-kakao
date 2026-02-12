@@ -23,7 +23,7 @@ public class MyLotto {
     public String getMyLottoStringType() {
         StringBuilder sb = new StringBuilder();
         for (Lotto lotto : myLottoList) {
-            sb.append(lotto.getLottoNumString());
+            sb.append(lotto.getLottoNumberString());
             sb.append("\n");
         }
 

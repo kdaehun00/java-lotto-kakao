@@ -28,11 +28,11 @@ public class LottoBalls {
         }
     }
 
-    public Set<LottoNumber> getLottoNums() {
+    public Set<LottoNumber> getLottoBalls() {
         return lotto;
     }
 
-    public String getLottoNumString() {
+    public String getLottoNumberString() {
         List<LottoNumber> lottoArr = new ArrayList<>(lotto);
 
         Collections.sort(lottoArr);

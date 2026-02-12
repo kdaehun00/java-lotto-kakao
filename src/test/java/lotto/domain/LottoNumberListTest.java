@@ -50,7 +50,7 @@ public class LottoNumberListTest {
         Set<Integer> lotto = new LinkedHashSet<>(List.of(1, 2, 3, 4, 5, 6));
         LottoBalls myLotto = new LottoBalls(lotto);
         String targetNumString = "[1, 2, 3, 4, 5, 6]";
-        String lottoNumString = myLotto.getLottoNumString();
+        String lottoNumString = myLotto.getLottoNumberString();
 
         assertThat(lottoNumString).isEqualTo(targetNumString);
     }
