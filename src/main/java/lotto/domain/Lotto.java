@@ -4,6 +4,7 @@ import lotto.exception.ExceptionCode;
 import lotto.exception.LottoException;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private static final int PRICE = 1000;
@@ -21,8 +22,10 @@ public class Lotto {
     }
 
     public String getLottoString() {
-        return lotto.toString();
-    }
+        return lotto.stream()
+                .sorted()   // Comparable 구현 필요
+                .map(LottoNumber::toString)
+                .collect(Collectors.joining(", ", "[", "]"));    }
 
     public static int getPrice() {
         return PRICE;
