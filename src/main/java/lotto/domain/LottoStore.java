@@ -7,11 +7,14 @@ import static lotto.util.LottoAutoCreator.lottoAutoCreate;
 
 public class LottoStore {
 
-    public MyLotto buyLotto(int size) {
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i <= size; i++) {
-            lottos.add(lottoAutoCreate());
+    public MyLotto buy(List<Lotto> manualTickets, int autoCount) {
+
+        List<Lotto> purchased = new ArrayList<>(manualTickets);
+
+        for (int i = 0; i < autoCount; i++) {
+            purchased.add(new Lotto(lottoAutoCreate()));
         }
-        return new MyLotto(lottos);
+
+        return new MyLotto(purchased);
     }
 }
