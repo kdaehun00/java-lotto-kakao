@@ -69,6 +69,7 @@ public class LottoController {
         MyLotto myLotto= lottoStore.buy(manualLotto, autoCount);
 
         outputView.write(OutputMessage.PURCHASE_COUNT, manualCount, autoCount);
+      
         return myLotto;
     }
 }

@@ -24,6 +24,7 @@ public class AnswerLotto {
         int ballCount = 0;
 
         for (LottoNumber lottoNumber : this.lotto.getLotto()) {
+
             ballCount += matchBall(other, lottoNumber);
         }
         return ballCount;
@@ -31,6 +32,7 @@ public class AnswerLotto {
 
     private int matchBall(Lotto other, LottoNumber lottoNumber) {
         if (other.getLotto().contains(lottoNumber)) {
+
             return 1;
         }
         return 0;
@@ -38,5 +40,6 @@ public class AnswerLotto {
 
     private boolean isBonusCorrect(Lotto other) {
         return other.getLotto().contains(this.bonusNum);
+
     }
 }

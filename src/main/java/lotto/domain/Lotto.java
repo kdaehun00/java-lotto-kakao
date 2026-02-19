@@ -23,9 +23,10 @@ public class Lotto {
 
     public String getLottoString() {
         return lotto.stream()
-                .sorted()   // Comparable 구현 필요
+                .sorted()
                 .map(LottoNumber::toString)
-                .collect(Collectors.joining(", ", "[", "]"));    }
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 
     public static int getPrice() {
         return PRICE;
@@ -36,4 +37,5 @@ public class Lotto {
             throw new LottoException(ExceptionCode.INVALID_LOTTO_NUMBER_COUNT);
         }
     }
+
 }
